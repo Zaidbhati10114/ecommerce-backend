@@ -9,9 +9,13 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+const allowedOrigins = [
+  "http://localhost:3000", // Local development
+  process.env.FRONTEND_URL,
+];
 app.use(
   cors({
-    origin: "http://localhost:3000", // or whatever port your React app runs on
+    origin: allowedOrigins, // or whatever port your React app runs on
     credentials: true,
   })
 );
